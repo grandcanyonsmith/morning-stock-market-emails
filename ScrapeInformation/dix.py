@@ -13,9 +13,18 @@ def vix_metrics():
             'value blue': float(content.split()[-1].split(',')[2])*100}
     latest = str(data['value blue'])
     current_dix = float(content.split()[-1].split(',')[2])*100
+    current_dix = current_dix.__round__(2)
     the_dix_before_last = float(content.split()[-2].split(',')[2])*100
+    the_dix_before_last = the_dix_before_last.__round__(2)
     gain_or_loss = str((((current_dix/the_dix_before_last)-1)*100).__round__(2))
-    return latest, the_dix_before_last, gain_or_loss
+    dix_number = float(gain_or_loss)
+    print(dix_number)
+    if dix_number < 0:
+        dix_positive_or_negative = 'negative'
+    else:
+        dix_positive_or_negative = 'positive'
+        gain_or_loss = "+" + gain_or_loss
+    return current_dix, the_dix_before_last, gain_or_loss, dix_positive_or_negative
 
 
 # vix_metrics()
