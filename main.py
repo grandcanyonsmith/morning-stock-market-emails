@@ -214,7 +214,7 @@ schedule.every().friday.at("13:00").do(main)
 
 if __name__ == "__main__":
     print("Sending emails every day at 13:00 gmt")
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(1)
-    main()
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+    # main()
