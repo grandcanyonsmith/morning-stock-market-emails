@@ -21,7 +21,7 @@ def get_nasdaq_futures():
 
     soup = get_page_source_code(url)
     nasdaq_futures = soup.select_one(
-        ".futureWrapper~ .futureWrapper+ .futureWrapper .jBluap+ .dWmdTT").get_text(strip=True)
+        ".futureWrapper~ .futureWrapper+ .futureWrapper .jBluap+ .ThspH").get_text(strip=True)
     print(f"Nasdaq futures: {nasdaq_futures}")
     number_extract = nasdaq_futures[:-1]
     number_extract = float(number_extract)
@@ -37,7 +37,7 @@ def get_dow_futures():
     try:
 
         soup = get_page_source_code(url)
-        dow_futures = soup.select_one(".jBluap + .ThspH").get_text(strip=True)
+        dow_futures = soup.select_one(".jBluap+ .dWmdTT").get_text(strip=True)
         print(f"Dow futures: {dow_futures}")
         number_extract = dow_futures[:-1]
         number_extract = float(number_extract)
@@ -58,7 +58,7 @@ def get_spy_futures():
 
     soup = get_page_source_code(url)
     spy_futures = soup.select_one(
-        ".futureWrapper:nth-of-type(3) .jBluap+ .dWmdTT").get_text(strip=True)
+        ".futureWrapper:nth-child(3) .jBluap+ .ThspH").get_text(strip=True)
     print(f"Spy futures: {spy_futures}")
     number_extract = spy_futures[:-1]
     number_extract = float(number_extract)
@@ -68,3 +68,6 @@ def get_spy_futures():
         negative_or_positive = 'positive'
         spy_futures = "+" + spy_futures
     return spy_futures, negative_or_positive
+
+
+# get_nasdaq_futures()
