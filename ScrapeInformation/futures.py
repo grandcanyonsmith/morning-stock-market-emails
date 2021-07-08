@@ -20,8 +20,8 @@ def get_page_source_code(url):
 def get_nasdaq_futures():
 
     soup = get_page_source_code(url)
-    nasdaq_futures = soup.select_one(
-        ".futureWrapper~ .futureWrapper+ .futureWrapper .jBluap+ .ThspH").get_text(strip=True)
+    nasdaq_futures = soup.select("div.styles__TickerValueWrapper-sc-5voyhs-5.cRPvOy")[
+        2].select("span")[-1].get_text(strip=True)
     print(f"Nasdaq futures: {nasdaq_futures}")
     number_extract = nasdaq_futures[:-1]
     number_extract = float(number_extract)
@@ -37,7 +37,8 @@ def get_dow_futures():
     try:
 
         soup = get_page_source_code(url)
-        dow_futures = soup.select_one(".jBluap+ .dWmdTT").get_text(strip=True)
+        dow_futures = soup.select("div.styles__TickerValueWrapper-sc-5voyhs-5.cRPvOy")[
+            0].select("span")[-1].get_text(strip=True)
         print(f"Dow futures: {dow_futures}")
         number_extract = dow_futures[:-1]
         number_extract = float(number_extract)
@@ -57,8 +58,8 @@ def get_dow_futures():
 def get_spy_futures():
 
     soup = get_page_source_code(url)
-    spy_futures = soup.select_one(
-        ".futureWrapper:nth-child(3) .jBluap+ .ThspH").get_text(strip=True)
+    spy_futures = soup.select("div.styles__TickerValueWrapper-sc-5voyhs-5.cRPvOy")[
+        1].select("span")[-1].get_text(strip=True)
     print(f"Spy futures: {spy_futures}")
     number_extract = spy_futures[:-1]
     number_extract = float(number_extract)
@@ -71,3 +72,5 @@ def get_spy_futures():
 
 
 # get_nasdaq_futures()
+# get_spy_futures()
+# get_dow_futures()
