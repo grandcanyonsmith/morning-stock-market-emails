@@ -37,7 +37,7 @@ with open('output.csv') as csv_file:
         try:
             # print(row)
             price= row[6]
-            # print(price)
+            # print(price
             # call_or_put = row[5]
             # if call_or_put == 'C':
             #     empty.append(row)
