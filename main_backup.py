@@ -55,14 +55,15 @@ vix_month_difference = get_vix_month_diff()
 
 bullish_img = 'White circle thumbs up'
 bearish_img = 'White circle thumbs down'
-
+print(tnx_month_difference)
+print(tnx_week_difference)
 if tnx_week_difference < 0:
    tnx_week_bg_color = '#50C878'
    tnx_week_positive_or_negative = ''
    tnx_week_index_sentiment_img = 'bullish'
 else:    
    tnx_week_bg_color = '#ff6347'
-   tnx_week_positive_or_negative = '+'
+   tnx_week_positive_or_negative = '-'
    tnx_week_index_sentiment_img = 'bearish'
 
 if dyx_week_difference < 0:
@@ -110,7 +111,6 @@ else:
    vix_month_positive_or_negative = '+'
    vix_month_index_sentiment_img = 'bearish'
 
-print(tnx_month_index_sentiment_img)
 
 # Create message container - the correct MIME type is multipart/alternative.
 for x in you:
@@ -283,15 +283,15 @@ for x in you:
 
                 <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">10-Year</h3>
                 <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Treasury Bond</h3>
-                <div style="font-size: 12.5px; display: flex; border: none;">
-                <h3 style="text-align: left;" class="center" >{tnx_price}%</h3>
+                <div style="display: flex; border: none;">
+                <h3 style="text-align: left;" class="center" >{tnx_week_positive_or_negative}{tnx_price}</h3>
                 <h3>|</h3>
                 <h3 style="text-align: right;" class="center" >{tnx_week_positive_or_negative}{tnx_week_difference}%</h3>
                 </div>
-                <h3 class="center" >(TNX)</h3>
-                <h3 style="font-size: 9px; text-align: left; padding: 0; margin: 5px;">**5-day difference</h3> 
+                <h3 class="center" >(TNX)</h3>  
+                <h3 style="font-size: 9px; text-align: left; padding: 0; margin: 5px;">**5-day difference</h3>
               </div>
-              
+
               <div style="padding: 0px; margin: 2px; border: none; width: 75%; background-color: {dyx_week_bg_color}" >
                 <img
                 src="{'https://res.cloudinary.com/apexx/image/upload/v1625592197/Screen_Shot_2021-07-06_at_11.01.18_AM-removebg-preview_1_qr4bif.png' if dyx_week_index_sentiment_img == 'bullish' else 'https://res.cloudinary.com/apexx/image/upload/v1625592165/Screen_Shot_2021-07-06_at_11.02.29_AM-removebg-preview_vgvtgv.png'}"
@@ -302,14 +302,13 @@ for x in you:
                 margin-right: auto;
                 width: 45%;
                 height: 60px;"
-                
               />
               
 
                 <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">US Dollar</h3>
                 <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Index</h3>
-                <div style="font-size: 12.5px; display: flex; border: none;">
-                <h3 style="text-align: left;" class="center" >{dyx_price}</h3>
+                <div style="display: flex; border: none;">
+                <h3 style="text-align: left;" class="center" >{dyx_week_positive_or_negative}{dyx_price}</h3>
                 <h3>|</h3>
                 <h3 style="text-align: right;" class="center" >{dyx_week_positive_or_negative}{dyx_week_difference}%</h3>
                 </div>
@@ -330,12 +329,12 @@ for x in you:
 
               <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">Market Fear</h3>
               <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Gauge</h3>
-              <div style="font-size: 12.5px; display: flex; border: none;">
-              <h3 style="text-align: left;" class="center" >{vix_price}</h3>
+              <div style="display: flex; border: none;">
+              <h3 style="text-align: left;" class="center" >{vix_week_positive_or_negative}{vix_price}</h3>
               <h3>|</h3>
               <h3 style="text-align: right;" class="center" >{vix_week_positive_or_negative}{vix_week_difference}%</h3>
               </div>
-              <h3 class="center" >(VIX)</h3>
+              <h3 class="center" >(VIX)</h3>              
             </div></div>
             
             <div class="macro-economics">
@@ -354,12 +353,12 @@ for x in you:
 
                 <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">10-Year</h3>
                 <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Treasury Bond</h3>
-                <div style="font-size: 12.5px; display: flex; border: none;">
-                <h3 style="text-align: left;" class="center" >{tnx_price}%</h3>
+                <div style="display: flex; border: none;">
+                <h3 style="text-align: left;" class="center" >{tnx_month_positive_or_negative}{tnx_price}</h3>
                 <h3>|</h3>
                 <h3 style="text-align: right;" class="center" >{tnx_month_positive_or_negative}{tnx_month_difference}%</h3>
                 </div>
-                <h3 class="center" >(TNX)</h3>            
+                <h3 class="center">(TNX)</h3>            
                 <h3 style="font-size: 9px; text-align: left; padding: 0; margin: 5px;">**1-month difference</h3>
               </div>
 
@@ -378,12 +377,12 @@ for x in you:
 
                 <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">US Dollar</h3>
                 <h3 style="margin: 0px !important; text-align: center; padding: 0px !important;" class="center">Index</h3>
-                <div style="font-size: 12.5px; display: flex; border: none;">
-                <h3 style="text-align: left;" class="center" >{dyx_price}</h3>
+                <div style="display: flex; border: none;">
+                <h3 style="text-align: left;" class="center" >{tnx_month_positive_or_negative}{tnx_price}</h3>
                 <h3>|</h3>
-                <h3 style="text-align: right;" class="center" >{dyx_month_positive_or_negative}{dyx_month_difference}%</h3>
+                <h3 style="text-align: right;" class="center" >{tnx_month_positive_or_negative}{tnx_month_difference}%</h3>
                 </div>
-                <h3 class="center" >(DYX)</h3>            
+                <h3 class="center" >(DYX)</h3> 
               </div>
 
               <div class="hello" style="padding: 0px; margin: 2px; border: none ; width: 75%; background-color: {vix_month_bg_color}" >
@@ -400,12 +399,11 @@ for x in you:
 
               <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">Market Fear</h3>
               <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Gauge</h3>
-              <div style="font-size: 12.5px; display: flex; border: none;">
-              <h3 style="text-align: left;" class="center" >{vix_price}</h3>
+              <div style="display: flex; border: none;">              
+              <h3 style="text-align: left;" class="center" >{vix_month_positive_or_negative}{vix_price}</h3>
               <h3>|</h3>
-              <h3 style="text-align: right;" class="center" >{vix_month_positive_or_negative}{vix_month_difference}%</h3>
-              </div>
-              <h3 class="center" >(VIX)</h3></div></div></div>
+              <h3 style="text-align: right;" class="center" >{vix_month_positive_or_negative}{vix_month_difference}%</h3></div>
+              <div style="border: none;"><h3 class="center">(VIX)</h3></div></div></div></div></div>
         </div>
   </body>
   </html>
