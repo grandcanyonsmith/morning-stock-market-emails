@@ -10,7 +10,7 @@ from ScrapeInformation.futures import (get_dow_futures, get_nasdaq_futures,
 from ScrapeInformation.premarket_gainers import print_gainers
 from ScrapeInformation.macro_stats import *
 from styles import css
-from PIL import Image
+
 
 today_date = datetime.now().strftime("%m-%d-%Y")
 
