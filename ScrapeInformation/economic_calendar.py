@@ -9,7 +9,6 @@ def scrape_economic_calendar():
     for x in r.json()['economicCalendar']:
         try:
             if x['country'] == 'US':
-                print(x)
                 if x['impact'] != 'low':
                     print(x)
                     time = x['time']
@@ -44,3 +43,4 @@ def scrape_economic_calendar():
 
 
 
+scrape_economic_calendar()
