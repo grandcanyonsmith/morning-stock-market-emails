@@ -42,7 +42,12 @@ def get_dow_futures():
     try:
 
         soup = get_page_source_code(url)
+<<<<<<< HEAD
         dow_futures = soup.select_one(".jBluap + .ThspH").get_text(strip=True)
+=======
+        dow_futures = soup.select("div.styles__TickerValueWrapper-sc-5voyhs-5.cRPvOy")[
+            0].select("span")[-1].get_text(strip=True)
+>>>>>>> a18ab89acfdd18d3db95a52fb4bafda36062e091
         print(f"Dow futures: {dow_futures}")
         number_extract = dow_futures[:-1]
         number_extract = float(number_extract)
@@ -79,3 +84,23 @@ def get_spy_futures():
         negative_or_positive = 'negative'
         return spy_futures, negative_or_positive
 
+<<<<<<< HEAD
+=======
+    soup = get_page_source_code(url)
+    spy_futures = soup.select("div.styles__TickerValueWrapper-sc-5voyhs-5.cRPvOy")[
+        1].select("span")[-1].get_text(strip=True)
+    print(f"Spy futures: {spy_futures}")
+    number_extract = spy_futures[:-1]
+    number_extract = float(number_extract)
+    if number_extract < 0:
+        negative_or_positive = 'negative'
+    else:
+        negative_or_positive = 'positive'
+        spy_futures = "+" + spy_futures
+    return spy_futures, negative_or_positive
+
+
+# get_nasdaq_futures()
+# get_spy_futures()
+# get_dow_futures()
+>>>>>>> a18ab89acfdd18d3db95a52fb4bafda36062e091
