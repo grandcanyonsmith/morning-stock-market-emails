@@ -26,7 +26,6 @@ css = """
       .markets-wrapper section {
         margin-bottom: 0.8rem;
         margin-left: 25%;
-        
       }
 
       .wrapper {

@@ -18,15 +18,14 @@ def main():
   # me == my email address
   # you == recipient's email address
   me = "themorningmarketnews@gmail.com"
-  # you = ['themorningmarketnews@gmail.com']
-  you = ['themorningmarketnews@gmail.com','canyonfsmith@gmail.com',"quaidrholder@gmail.com","benjcrowley@gmail.com "]
+  you = ['themorningmarketnews@gmail.com']
+  # you = ['themorningmarketnews@gmail.com','canyonfsmith@gmail.com',"quaidrholder@gmail.com","benjcrowley@gmail.com "]
 
   bullish_img = "'https://res.cloudinary.com/apexx/image/upload/v1625592197/Screen_Shot_2021-07-06_at_11.01.18_AM-removebg-preview_1_qr4bif.png'"
   bearish_img = "'https://res.cloudinary.com/apexx/image/upload/v1625592165/Screen_Shot_2021-07-06_at_11.02.29_AM-removebg-preview_vgvtgv.png'"
 
   latest, the_dix_before_last, gain_or_loss, dix_positive_or_negative = vix_metrics()
   event, impact, time = scrape_economic_calendar()
-
 
   top_three_tickers, difference = print_gainers()
   premarket_gainer_one = top_three_tickers[0]
@@ -52,10 +51,6 @@ def main():
   tnx_month_difference = get_tnx_month_diff()
   dyx_month_difference = get_dyx_month_diff()
   vix_month_difference = get_vix_month_diff()
-
-
-  bullish_img = 'White circle thumbs up'
-  bearish_img = 'White circle thumbs down'
 
   if tnx_week_difference < 0:
     tnx_week_bg_color = '#50C878'
@@ -111,15 +106,12 @@ def main():
     vix_month_positive_or_negative = '+'
     vix_month_index_sentiment_img = 'bearish'
 
-  # Create message container - the correct MIME type is multipart/alternative.
   for x in you:
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Morning Stock News Update"
     msg['From'] = me
     msg['To'] = x
     print(x)
-
-
 
     # Create the body of the message (a plain-text and an HTML version).
     text = "ADP National Employment&nbsp; &nbsp; &nbsp; &nbsp;"
@@ -169,13 +161,6 @@ def main():
                 margin-right: auto;
                 width: 50%;"
               />
-
-              
-
-
-
-
-
 
               <section class="wrapper">
                 <h3>{event}</h3>
@@ -304,7 +289,6 @@ def main():
                   
                 />
                 
-
                   <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">US Dollar</h3>
                   <h3 style="margin: 0px !important; padding: 0px !important;" class="center">Index</h3>
                   <div style="font-size: 12.5px; display: flex; border: none;">
@@ -374,7 +358,6 @@ def main():
                   height: 60px;"
                 />
                 
-
                   <h3 style="margin-bottom: 0px !important; padding: 0px !important;" class="center">US Dollar</h3>
                   <h3 style="margin: 0px !important; text-align: center; padding: 0px !important;" class="center">Index</h3>
                   <div style="font-size: 12.5px; display: flex; border: none;">
@@ -411,13 +394,9 @@ def main():
 
     """
 
-    # Record the MIME types of both parts - text/plain and text/html.
     part1 = MIMEText(text, 'plain')
     part2 = MIMEText(html, 'html')
 
-    # Attach parts into message container.
-    # According to RFC 2046, the last part of a multipart message, in this case
-    # the HTML message, is best and preferred.
     msg.attach(part1)
     msg.attach(part2)
     # Send the message via local SMTP server.
@@ -441,6 +420,6 @@ schedule.every().friday.at("13:00").do(main)
 if __name__ == "__main__":
     print("Sending emails every day at 13:00 gmt")
     while True:
-        schedule.run_pending()
-        time.sleep(1)
-        
+        # schedule.run_pending()
+        main()
+        time.sleep(60*60)

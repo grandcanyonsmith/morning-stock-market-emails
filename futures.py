@@ -10,9 +10,6 @@ r = requests.get('https://eodhistoricaldata.com/api/intraday/AAPL.US?api_token=O
 
 with open('output.csv', 'w+') as f:
     f.write(r.text)
-    # print(r.text)
-
-
 
 heights = []
 highest_gain = []
@@ -22,8 +19,7 @@ prices = []
 all_gains = []
 high_al = []
 list_of_options = ['GOOG  191122C01110000','GOOG  191122C01090000','GOOG  191122C01242500']
-# list_of_options = ['GOOG  191122C01242500']
-# with open('options_goog_23587_20191029.txt') as csv_file:
+
 with open('output.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count = 0
@@ -35,38 +31,7 @@ with open('output.csv') as csv_file:
     for row in csv_reader:
         # i += 1
         try:
-            # print(row)
             price= row[6]
-            # print(price
-            # call_or_put = row[5]
-            # if call_or_put == 'C':
-            #     empty.append(row)
-            #     price = row[8]
-            #     option_id = row[7]
-            #     call_or_put = row[5]
-            #     if option_id in all_id:
-            #         pass
-            #     else:
-            #         all_id.append(option_id)
-        # print(all_id)
-        # i = 0
-        # for x in all_id:
-            
-        #     i += 1
-        #     # print(x)
-        #     len_of_all = len(all_id)
-        #     print(i,"of",len_of_all)
-        #     # print(i)
-        #     # print(x)
-            
-        #     highest = []
-        #     for row in empty:
-            
-            
-            
-
-            # x = x
-            # if x == option_id:
 
             price = row[5]
             # print(price)
@@ -74,50 +39,29 @@ with open('output.csv') as csv_file:
             prices.append(json)
         except:
             Exception
-        # print("PRICES",prices)
-    # print(prices)
+
     for x in prices:
         try:
-        # print(x)
-            
-            # print("ID",option_id)
-            # print("yeet",option_id)
             number = x['price']
             if number == '':
                 real_number = 0
             else:
-            # try:
                 real_number = float(number)
-            # real_number = 0
-            # print(real_number)
             heights.append(real_number)
         except:
             Exception
-    # print(heights)
-    # print(heights)
-    
     hi = 0
-    # empty = []
     i = 0
     ally = []
     lil_high = [0]
     for i in range(len(heights)):
-    # print("TEST",option_id)
         i += 1
         print(i)
-
         
         yup = []
         ally = []
         highest = []
-        
-            
-        # for i in range(len(heights)):
-        #     # print("TEST",option_id)
-        #     # print(i)
-        #     highest = []
-        #     yup = []
-        #     # try:
+
         wee = []
         new_highest = 0
         
