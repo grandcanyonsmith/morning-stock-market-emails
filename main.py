@@ -420,6 +420,6 @@ schedule.every().friday.at("13:00").do(main)
 if __name__ == "__main__":
     print("Sending emails every day at 13:00 gmt")
     while True:
-        # schedule.run_pending()
+        schedule.run_pending()
         main()
-        time.sleep(60*60)
+        # time.sleep(60*60)
