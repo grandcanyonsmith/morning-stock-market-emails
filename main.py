@@ -18,8 +18,8 @@ def main():
   # me == my email address
   # you == recipient's email address
   me = "themorningmarketnews@gmail.com"
-  you = ['themorningmarketnews@gmail.com']
-  # you = ['themorningmarketnews@gmail.com','canyonfsmith@gmail.com',"quaidrholder@gmail.com","benjcrowley@gmail.com "]
+  # you = ['themorningmarketnews@gmail.com']
+  you = ['themorningmarketnews@gmail.com','canyonfsmith@gmail.com',"quaidrholder@gmail.com","benjcrowley@gmail.com "]
 
   bullish_img = "'https://res.cloudinary.com/apexx/image/upload/v1625592197/Screen_Shot_2021-07-06_at_11.01.18_AM-removebg-preview_1_qr4bif.png'"
   bearish_img = "'https://res.cloudinary.com/apexx/image/upload/v1625592165/Screen_Shot_2021-07-06_at_11.02.29_AM-removebg-preview_vgvtgv.png'"
@@ -421,5 +421,5 @@ if __name__ == "__main__":
     print("Sending emails every day at 13:00 gmt")
     while True:
         schedule.run_pending()
-        main()
+        
         # time.sleep(60*60)
