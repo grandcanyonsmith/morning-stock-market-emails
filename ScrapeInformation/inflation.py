@@ -1,4 +1,4 @@
-import quandl 
+import quandl
 import requests
 from datetime import date
 import time
@@ -9,4 +9,4 @@ df = r.json()
 current_inflation = df['dataset']['data'][0][1]
 
 year_month = time.strftime("%Y-%m")
-print("Inflation " + year_month + ": ",current_inflation,"%")
+print(f"Inflation {year_month}: ", current_inflation, "%")

@@ -1,7 +1,10 @@
 import requests
 import time
 year_month = time.strftime("%Y-%m-%d")
-r = requests.get('https://financialmodelingprep.com/api/v4/industry_price_earning_ratio?date=' + year_month +'&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1')
+r = requests.get(
+    f'https://financialmodelingprep.com/api/v4/industry_price_earning_ratio?date={year_month}&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1'
+)
+
 print(year_month)
 ratio = r.json()
 
@@ -10,10 +13,16 @@ ratio = r.json()
 year = ['2021']
 
 for x in year:
-    print('https://financialmodelingprep.com/api/v4/sector_price_earning_ratio?date='+ x + '-'+year_month +'&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1')
-    sectors = requests.get('https://financialmodelingprep.com/api/v4/sector_price_earning_ratio?date='+ x +'-'+ year_month +'&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1')
+    print(
+        f'https://financialmodelingprep.com/api/v4/sector_price_earning_ratio?date={x}-{year_month}&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1'
+    )
+
+    sectors = requests.get(
+        f'https://financialmodelingprep.com/api/v4/sector_price_earning_ratio?date={x}-{year_month}&exchange=NYSE&apikey=e49e22b0865cfeea71aa0771ddf965a1'
+    )
+
     sectors = sectors.json()
-    
+
     for i in sectors:
         if i['sector'] == 'Technology':
             print(x,": ",i)
@@ -26,7 +35,10 @@ stocks = ['AAPL','MA','BR','CSGP','GLOB','CDNS','PETS','NVR','TWLO','AMCX','FDX'
 for stock in stocks:
     try:
         i = 0
-        price = requests.get('https://financialmodelingprep.com/api/v3/historical-price-full/'+stock+'?from=2021-03-12&to=2021-07-09&apikey=e49e22b0865cfeea71aa0771ddf965a1')
+        price = requests.get(
+            f'https://financialmodelingprep.com/api/v3/historical-price-full/{stock}?from=2021-03-12&to=2021-07-09&apikey=e49e22b0865cfeea71aa0771ddf965a1'
+        )
+
         # price = requests.get('https://financialmodelingprep.com/api/v3/historical-chart/30min/'+ stock +'?apikey=e49e22b0865cfeea71aa0771ddf965a1')
         price = price.json()
         price = price['historical']
@@ -42,9 +54,9 @@ for stock in stocks:
                 apple.append(json)
             # if stock == 'PINS' and x['date']:
             #     print(x)
-        
 
-        
+
+
         stock_price = [x['price'] for x in apple]
         minimum = min(stock_price)
         maximum = max(stock_price)
@@ -58,7 +70,7 @@ for stock in stocks:
                 # print(min_value['date']) 
                 low = min_value['price']
         for x in apple:
-            
+
             if x['price'] == maximum and min_value['date'] < x['date']:
                 max_value = x
                 print(max_value['date'])

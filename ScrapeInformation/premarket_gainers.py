@@ -14,8 +14,7 @@ def get_page_source_code(url):
     header = {
         "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Safari/537.3"}
     response = requests.get(url, headers=header)
-    soup = BS(response.content, "html.parser")
-    return soup
+    return BS(response.content, "html.parser")
 
 
 soup = get_page_source_code(
@@ -34,7 +33,7 @@ premarket_gainers_change = soup.find_all(
 # total_tickers = len(premarket_gainers_change)
 def print_gainers():
     print("Biggest Pre-market Gainers")
-    for i in range(0, 3):
+    for i in range(3):
         if "-" not in premarket_gainers_change[i].text:
             print(premarket_gainers_ticker[i+1].text,
                   premarket_gainers_change[i].text)

@@ -106,6 +106,8 @@ def main():
     vix_month_positive_or_negative = '+'
     vix_month_index_sentiment_img = 'bearish'
 
+  # Create the body of the message (a plain-text and an HTML version).
+  text = "ADP National Employment&nbsp; &nbsp; &nbsp; &nbsp;"
   for x in you:
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Morning Stock News Update"
@@ -113,8 +115,6 @@ def main():
     msg['To'] = x
     print(x)
 
-    # Create the body of the message (a plain-text and an HTML version).
-    text = "ADP National Employment&nbsp; &nbsp; &nbsp; &nbsp;"
     html = f"""\
 
     <!DOCTYPE html>

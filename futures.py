@@ -43,10 +43,7 @@ with open('output.csv') as csv_file:
     for x in prices:
         try:
             number = x['price']
-            if number == '':
-                real_number = 0
-            else:
-                real_number = float(number)
+            real_number = 0 if number == '' else float(number)
             heights.append(real_number)
         except:
             Exception
@@ -54,17 +51,17 @@ with open('output.csv') as csv_file:
     i = 0
     ally = []
     lil_high = [0]
+    yup = []
+    new_highest = 0
+
     for i in range(len(heights)):
         i += 1
         print(i)
-        
-        yup = []
+
         ally = []
         highest = []
 
         wee = []
-        new_highest = 0
-        
         for j in range(i+1, len(heights)):
             
             # print(i)
@@ -74,24 +71,19 @@ with open('output.csv') as csv_file:
             # print("wut",heights[j])
             # print("YES",max(wee))
             sell_out = float(max(wee))-(float(max(wee))*.50)
-            # sell_out = float(max(wee))-(.13)
-            # print("SELL OUT",sell_out)
-
-            
-
-            if heights[i] < heights[j] and float(heights[i]) > float(sell_out):
-                
-                # print("yes")
-
-                yes = (((float(heights[j])/float(heights[i]))-1)*100).__round__(2)
-                json = {"one":heights[i],"two":heights[j],"diff":yes}
-                # print("YEAH",json)
-                highest.append(json)
-                wee.append(heights[j])
-            else:
+            if heights[i] >= heights[j] or float(heights[i]) <= float(
+                sell_out
+            ):
                 break
 
 
+            # print("yes")
+
+            yes = (((float(heights[j])/float(heights[i]))-1)*100).__round__(2)
+            json = {"one":heights[i],"two":heights[j],"diff":yes}
+            # print("YEAH",json)
+            highest.append(json)
+            wee.append(heights[j])
     for x in highest:
         high = x['diff']
         one = x['one']
@@ -103,8 +95,8 @@ with open('output.csv') as csv_file:
     # prices.clear()
     # highest.clear()
     # heights.clear()
-    
-        
+
+
     #     print("ally",ally)
     #     for x in ally:
     #         yeah = x['diff']
@@ -118,12 +110,7 @@ with open('output.csv') as csv_file:
     res = {}
     for dic in ally:
         for key, val in dic.items():
-            if key in res:
-                # print(dic)
-                res[key] = max(res[key], val)
-            else:
-                res[key] = val
-
+            res[key] = max(res[key], val) if key in res else val
     print(res[key])
 
 try:

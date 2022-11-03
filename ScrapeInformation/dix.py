@@ -24,7 +24,7 @@ def vix_metrics():
         dix_positive_or_negative = 'negative'
     else:
         dix_positive_or_negative = 'positive'
-        gain_or_loss = "+" + str(gain_or_loss)
+        gain_or_loss = f"+{str(gain_or_loss)}"
     return current_dix, the_dix_before_last, gain_or_loss, dix_positive_or_negative
 
 
